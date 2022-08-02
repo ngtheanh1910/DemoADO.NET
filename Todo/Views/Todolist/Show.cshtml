@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Todo.Models.Todolist>
+
+<div style="width: 100%;">   
+    <form class="form-show" action="@Url.Action("AddTodo", "Todolist")">
+        <button class="a-btn">Thêm công việc</button>
+    </form>
+    <ul class="todos">
+        @foreach (var item in Model)
+        {
+            @*<tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    <div>
+                    @Html.ActionLink("Sửa", "UpdateTodo", new { id = item.id }) |
+                    <i class="fas fa-pen"></i>
+                    </div>
+                    @Html.ActionLink("Xóa", "DeleteTodo", new { id = item.id }, new { onclick = "return confirm('Are sure wants to delete?');" })
+                </td>
+            </tr>*@
+            <li>
+                <span>
+                    @Html.DisplayFor(modelItem => item.title)
+                </span>
+                <div>
+                    <a href="@Url.Action("UpdateTodo", "Todolist", new { id = item.id })">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                    <a href="@Url.Action("DeleteTodo", "Todolist",  new { id = item.id })"><i class="far fa-trash-alt"></i></a>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
